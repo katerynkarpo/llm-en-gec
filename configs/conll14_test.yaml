@@ -1,0 +1,25 @@
+mode: full
+en_split: conll_2014_test
+
+en_src_path: data/conll-2014/conll14.test.src
+en_ref_paths:
+  - data/conll-2014/conll14.test.ref0
+  - data/conll-2014/conll14.test.ref1
+en_m2_path: data/conll-2014/conll14.test.m2
+
+model: gemini-3.1-pro
+llm_backend: litellm_router
+agent: gec_single_prompt
+prompt_name: taxonomy_optimised_gemini_family
+
+thinking_config:
+  thinkingLevel: low
+  includeThoughts: false
+llm_timeout_seconds: 300
+
+num_threads: 20
+verbosity: false
+show_progress: true
+log_input_output: false
+batch_size: 15
+start_index: 0

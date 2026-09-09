@@ -1,0 +1,25 @@
+mode: full
+en_split: bea_test
+
+en_src_path: data/en_bea/test/bea-test.src
+# BEA test is scored on CodaBench. This line-aligned placeholder is used only
+# while generating predictions; it is not used as the authoritative reference.
+en_ref_path: data/en_bea/test/bea-test.src
+en_m2_path: data/en_bea/test/bea-test.m2
+
+model: gemini-3.1-pro
+llm_backend: litellm_router
+agent: gec_single_prompt
+prompt_name: taxonomy_optimised_gemini_family
+
+thinking_config:
+  thinkingLevel: low
+  includeThoughts: false
+llm_timeout_seconds: 300
+
+num_threads: 20
+verbosity: false
+show_progress: true
+log_input_output: false
+batch_size: 15
+start_index: 0

@@ -1,0 +1,42 @@
+mode: full
+en_split: bea_dev
+
+en_src_path: data/en_bea/dev/bea-dev.src
+en_ref_path: data/en_bea/dev/bea-dev.ref0
+en_m2_path: data/en_bea/dev/bea-dev.m2
+
+model: gemini-3.1-pro
+llm_backend: litellm_router
+agent: gec_single_prompt
+prompt_name: taxonomy_based_zero_shot
+
+thinking_config:
+  thinkingLevel: low
+  includeThoughts: false
+llm_timeout_seconds: 190
+
+num_threads: 20
+verbosity: false
+show_progress: true
+log_input_output: false
+
+few_shot:
+  enabled: true
+  n: 8
+  seed: 123
+  detokenize: true
+  src_path: data/en_bea/train/bea-train.src
+  ref_path: data/en_bea/train/bea-train.ref0
+
+batch_size: 15
+batch_shuffle_experiment:
+  enabled: true
+  num_permutations: 15
+  num_batches: 10
+  seed: 13
+  random_sample: true
+  no_repeat_positions: true
+  batch_start_index: 0
+  save_permutations: true
+
+start_index: 0
