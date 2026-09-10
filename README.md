@@ -2,7 +2,6 @@
 
 <div align="center">
 
-[![Paper](https://img.shields.io/badge/Paper-Findings%20of%20EMNLP%202026-b31b1b?style=for-the-badge&logo=googlescholar&logoColor=white)](paper.pdf)
 [![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![uv](https://img.shields.io/badge/Environment-uv-DE5FE9?style=for-the-badge&logo=uv&logoColor=white)](https://docs.astral.sh/uv/)
 [![Claude Skill](https://img.shields.io/badge/Claude-GEC%20Skill-D97757?style=for-the-badge&logo=anthropic&logoColor=white)](.claude/skills/gec-prompt-optimise/SKILL.md)
@@ -21,7 +20,6 @@ We study taxonomy-grounded prompts, model-specific prompt optimization, and mult
 - `.claude/skills/gec-prompt-optimise/`: Claude prompt-optimization skill
 - `data/`: BEA-2019 and CoNLL-2014 data
 - `results/`: predictions and evaluation reports
-- `paper.pdf`: camera-ready paper
 
 ## Quick start
 
