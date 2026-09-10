@@ -1,0 +1,32 @@
+# Appendix A.5: minimal-edits + taxonomy, 8-shot
+mode: full
+en_split: bea_dev
+
+en_src_path: data/en_bea/dev/bea-dev.src
+en_ref_path: data/en_bea/dev/bea-dev.ref0
+en_m2_path: data/en_bea/dev/bea-dev.m2
+
+model: gpt-4.1-mini
+llm_backend: litellm_router
+agent: gec_single_prompt
+prompt_name: taxonomy_based_zero_shot
+
+temperature: 0.0
+llm_timeout_seconds: 300
+
+few_shot:
+  enabled: true
+  n: 8
+  seed: 123
+  detokenize: true
+  delivery: system
+  demo_chunk: 0
+  src_path: data/en_bea/train/bea-train.src
+  ref_path: data/en_bea/train/bea-train.ref0
+
+num_threads: 20
+verbosity: false
+show_progress: true
+log_input_output: false
+batch_size: 1
+start_index: 0

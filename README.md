@@ -18,7 +18,7 @@ We study taxonomy-grounded prompts, model-specific prompt optimization, and mult
 - `configs/`: main experiment configurations
 - `src/agents/prompts/`: API-model prompt definitions
 - `.claude/skills/gec-prompt-optimise/`: Claude prompt-optimization skill
-- `data/`: BEA-2019 and CoNLL-2014 data
+- `data/`: BEA-2019 and CoNLL-2014 data 
 - `results/`: predictions and evaluation reports
 
 ## Quick start
@@ -38,6 +38,21 @@ uv run python en_main.py --config configs/bea_dev.yaml
 uv run python en_main.py --config configs/bea_test.yaml
 uv run python en_main.py --config configs/conll14_test.yaml
 ```
+
+For the open-weight Qwen3-8B configuration, install vLLM on a CUDA host and
+start its OpenAI-compatible server:
+
+```bash
+uv pip install vllm
+vllm serve Qwen/Qwen3-8B \
+  --served-model-name Qwen/Qwen3-8B \
+  --api-key local
+uv run python en_main.py --config configs/qwen3_8b.yaml
+```
+
+The Qwen config uses the same LiteLLM-based pipeline as the commercial models.
+It also preserves the reported deterministic decoding, chat-form few-shot
+demonstrations, disabled thinking, and sentence-level retry for malformed batches.
 
 Outputs are written to `outputs/<run_name>/`.
 

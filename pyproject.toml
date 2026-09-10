@@ -1,0 +1,16 @@
+[project]
+name = "llm-en-gec"
+version = "1.0.0"
+description = "Camera-ready artifacts for prompt-based and batched minimal-edit grammatical error correction"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "errant>=3.0.0",
+    "gec-metrics>=0.1.1",
+    "litellm==1.82.1",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+    "pyyaml>=6.0.3",
+    "spacy>=3.8.11",
+    "tqdm>=4.67.3",
+]

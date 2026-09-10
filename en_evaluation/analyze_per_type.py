@@ -19,7 +19,7 @@ from gec_metrics import get_metric
 import sys as _sys
 REPO_ROOT = Path(__file__).resolve().parent.parent
 _sys.path.insert(0, str(REPO_ROOT))
-from src.en_utils.tokenizer import tokenize as _en_tokenize  # noqa: E402
+from src.utils.tokenizer import tokenize as _en_tokenize  # noqa: E402
 
 
 def _normalize(text: str) -> str:

@@ -24,9 +24,9 @@ data/
     conll14.test.m2
 ```
 
-Additional bundled material includes detokenized variants, document-level BEA development data, curated few-shot pools, official CoNLL-2014 M2 variants, and the original conversion helper. The derived train sample and train/test-matched subsets are not stored; they can be regenerated with `scripts/build_train_sample.py` and `scripts/build_test_matched_sample.py`.
+Additional bundled material includes detokenized variants, document-level BEA development data, curated few-shot pools, official CoNLL-2014 M2 variants, and the original conversion helper. The derived train sample and train/test-matched subsets used during development are not included.
 
-The eight few-shot examples use BEA train indices recorded in `src/agents/prompts/few_shot_examples.py`. BEA test is scored on CodaBench; its source file is used as a line-aligned placeholder reference during local prediction generation, and the M2/CodaBench evaluator supplies the actual scoring references.
+The eight few-shot examples are sampled deterministically from the bundled BEA train files using the seed recorded in each configuration. BEA test is scored on CodaBench; its source file is used as a line-aligned placeholder reference during local prediction generation, and the M2/CodaBench evaluator supplies the actual scoring references.
 
 ## Licensing and release
 

@@ -1,0 +1,49 @@
+mode: full
+en_split: bea_dev
+
+en_src_path: data/en_bea/dev/bea-dev.src
+en_ref_path: data/en_bea/dev/bea-dev.ref0
+en_m2_path: data/en_bea/dev/bea-dev.m2
+
+model: qwen3-8b
+llm_backend: litellm_router
+llm_router:
+  model_list:
+    - model_name: qwen3-8b
+      litellm_params:
+        model: openai/Qwen/Qwen3-8B
+        api_base: env:QWEN_API_BASE
+        api_key: env:QWEN_API_KEY
+  fallbacks: []
+
+agent: gec_single_prompt
+prompt_name: qwen3_8b_optimized
+output_format: numbered_text
+retry_malformed_batches: true
+
+temperature: 0.0
+llm_timeout_seconds: 300
+llm_request_kwargs:
+  max_tokens: 4000
+  seed: 42
+  extra_body:
+    top_k: 1
+    chat_template_kwargs:
+      enable_thinking: false
+
+few_shot:
+  enabled: true
+  n: 8
+  seed: 123
+  detokenize: true
+  delivery: chat
+  demo_chunk: 0
+  src_path: data/en_bea/train/bea-train.src
+  ref_path: data/en_bea/train/bea-train.ref0
+
+num_threads: 1
+verbosity: false
+show_progress: true
+log_input_output: false
+batch_size: 5
+start_index: 0
