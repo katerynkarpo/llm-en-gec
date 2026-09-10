@@ -18,7 +18,7 @@ class BaseAgent(ABC):
     def __init__(
         self,
         model: str = "gpt-4o-mini",
-        temperature: float = 0.0,
+        temperature: float | None = 0.0,
         top_p: Optional[float] = None,
         request_timeout: float = 120.0,
         prompt_name: Optional[str] = None,

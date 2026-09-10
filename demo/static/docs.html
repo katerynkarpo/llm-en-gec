@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEC API Docs</title>
+  <style>
+    :root { --ink: #17211b; --muted: #66736b; --green: #146c43; --line: #dfe6e1; --bg: #f5f3ed; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--bg); font: 15px/1.6 system-ui, sans-serif; }
+    main { width: min(860px, calc(100% - 32px)); margin: 48px auto; }
+    h1 { margin-bottom: 4px; font: 700 34px/1.2 Georgia, serif; }
+    h2 { margin-top: 38px; font-size: 20px; }
+    p { color: var(--muted); }
+    a { color: var(--green); }
+    .route { margin: 14px 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+    .method { display: inline-block; margin-right: 8px; padding: 2px 8px; border-radius: 6px; color: white; background: var(--green); font-size: 12px; font-weight: 750; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    pre { overflow-x: auto; padding: 18px; border-radius: 12px; color: #eaf4ed; background: #14251b; font-size: 13px; }
+    .back { display: inline-block; margin-bottom: 18px; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="/">← Back to GEC Studio</a>
+    <h1>GEC API</h1>
+    <p>Offline documentation for the minimal-edit English correction service.</p>
+
+    <h2>Endpoints</h2>
+    <div class="route"><span class="method">POST</span><code>/api/correct</code><br>Correct text with a selected model, paper recipe, and few-shot mode.</div>
+    <div class="route"><span class="method">GET</span><code>/api/options</code><br>List server-approved models, A1–A6.4 recipes, and few-shot limits.</div>
+    <div class="route"><span class="method">GET</span><code>/api/example?count=2</code><br>Sample the requested number of erroneous sentences dynamically from BEA train.</div>
+    <div class="route"><span class="method">GET</span><code>/api/health</code><br>Check whether the GEC application is running.</div>
+
+    <h2>Correction example</h2>
+    <pre><code>curl -X POST http://127.0.0.1:8080/api/correct \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "text": "She do not likes it. Her friends likes it too.",
+    "model": "gpt-4.1-mini",
+    "recipe": "a6_4",
+    "batch_size": 2,
+    "temperature": 0,
+    "few_shot_mode": "paper"
+  }'</code></pre>
+
+    <h2>Few-shot modes</h2>
+    <p><code>paper</code> uses the recipe’s published default. <code>seeded</code> samples deterministically using <code>few_shot_n</code> and <code>few_shot_seed</code>. <code>custom</code> accepts up to eight source/reference pairs. <code>none</code> runs zero-shot.</p>
+
+    <h2>Sentence batching</h2>
+    <p><code>batch_size</code> controls how many independently corrected sentences are sent in each model request. The text must contain at least that many sentences; a final partial batch is allowed.</p>
+
+    <h2>Temperature</h2>
+    <p>Temperature limits are model-specific and are returned by <code>/api/options</code>. Omit <code>temperature</code> to use the profile default. For reproducible GEC runs, use <code>0</code>. GPT-5.4 requests with reasoning effort enabled must omit temperature.</p>
+
+    <p>Machine-readable schema: <a href="/openapi.json"><code>/openapi.json</code></a></p>
+  </main>
+</body>
+</html>

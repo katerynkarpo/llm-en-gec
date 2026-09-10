@@ -1,7 +1,6 @@
 import argparse
 import asyncio
 import json
-import random
 import re
 import shutil
 from pathlib import Path
@@ -18,6 +17,7 @@ from en_evaluation.exact_match import calculate_exact_matches, print_exact_match
 from en_evaluation.m2scorer import calculate_m2score, print_m2score_results
 from src.agent_registry import get_agent, register_agent
 from src.agents import SinglePromptGECAgent
+from src.few_shot import build_few_shot_prompt
 from src.llm import create_router
 from src.utils import detokenize, tokenize, process_in_parallel
 
@@ -120,72 +120,6 @@ def load_parallel_texts(src_path: Path, ref_path: Path) -> tuple[list[str], list
     if len(sources) != len(refs):
         raise ValueError(f"Length mismatch: {len(sources)} sources vs {len(refs)} refs")
     return sources, refs
-
-
-def detokenize_prompt_example(text: str) -> str:
-    text = str(text).strip()
-    replacements = [
-        (r"\s+([,.;:!?%])", r"\1"),
-        (r"\(\s+", "("),
-        (r"\s+\)", ")"),
-        (r"\[\s+", "["),
-        (r"\s+\]", "]"),
-        (r"\{\s+", "{"),
-        (r"\s+\}", "}"),
-        (r"\s+/'", "'"),
-        (r"\s+'(s|m|re|ve|d|ll)\b", r"'\1"),
-        (r"\s+n\s*'\s*t\b", "n't"),
-        (r"\s+n't\b", "n't"),
-        (r"\s+-\s+", "-"),
-    ]
-    for pattern, replacement in replacements:
-        text = re.sub(pattern, replacement, text)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
-
-
-def build_few_shot_prompt(
-    *,
-    src_path: Path,
-    ref_path: Path,
-    n: int,
-    seed: int,
-    detokenize_examples: bool = True,
-) -> tuple[str, list[dict]]:
-    if n <= 0:
-        return "", []
-
-    sources, refs = load_parallel_texts(src_path, ref_path)
-    if n > len(sources):
-        raise ValueError(
-            f"few_shot.n={n} exceeds available train examples ({len(sources)}) in {src_path}"
-        )
-
-    rng = random.Random(seed)
-    selected_indices = rng.sample(range(len(sources)), n)
-    examples = [
-        {
-            "train_index": idx + 1,
-            "source": detokenize_prompt_example(sources[idx]) if detokenize_examples else sources[idx],
-            "reference": detokenize_prompt_example(refs[idx]) if detokenize_examples else refs[idx],
-        }
-        for idx in selected_indices
-    ]
-
-    lines = [
-        "Few-shot examples from BEA train:",
-        "Follow the same input-to-correction style. Do not copy these examples; use them only as guidance.",
-    ]
-    for example_number, example in enumerate(examples, start=1):
-        lines.extend(
-            [
-                "",
-                f"Example {example_number}:",
-                f"Input: {example['source']}",
-                f"Correction: {example['reference']}",
-            ]
-        )
-    return "\n".join(lines), examples
 
 
 def build_few_shot_metadata(

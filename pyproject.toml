@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
     "errant>=3.0.0",
+    "fastapi>=0.135.0",
     "gec-metrics>=0.1.1",
     "litellm==1.82.1",
     "pydantic>=2.12.5",
@@ -13,4 +14,22 @@ dependencies = [
     "pyyaml>=6.0.3",
     "spacy>=3.8.11",
     "tqdm>=4.67.3",
+    "uvicorn>=0.41.0",
 ]
+
+[project.scripts]
+gec-demo = "demo.__main__:main"
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["demo*", "src*"]
+
+[tool.setuptools.package-data]
+demo = ["static/*.html"]
