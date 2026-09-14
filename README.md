@@ -1,4 +1,4 @@
-# Larger Context Window, Fewer Overcorrections
+# Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for Minimal-Edit Grammatical Error Correction
 
 
 
@@ -8,9 +8,11 @@
 
 
 
-Code and artifacts for paper **“Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for Minimal-Edit Grammatical Error Correction”**, accepted to **Findings of EMNLP 2026**.
+Code and artifacts for paper **“Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for 
+Minimal-Edit Grammatical Error Correction”**, accepted to **Findings of EMNLP 2026**.
 
-We study taxonomy-grounded prompts, model-specific prompt optimization, and multi-sentence batching for English GEC. Our best configuration reaches **78.32 $F_{0.5}$ on BEA-2019** and **67.08 $F_{0.5}$ on CoNLL-2014**.
+We study taxonomy-grounded prompts, model-specific prompt optimization, and multi-sentence batching for English GEC. 
+Our best configuration reaches **78.32 $F_{0.5}$ on BEA-2019 test** and **67.08 $F_{0.5}$ on CoNLL-2014 test**.
 
 ## Contents
 
