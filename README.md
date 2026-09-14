@@ -1,4 +1,4 @@
-# Larger Context Window, Fewer Overcorrections
+# Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for Minimal-Edit Grammatical Error Correction
 
 
 
@@ -8,9 +8,27 @@
 
 
 
-Code and artifacts for paper **“Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for Minimal-Edit Grammatical Error Correction”**, accepted to **Findings of EMNLP 2026**.
+Code and artifacts for paper **“Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for 
+Minimal-Edit Grammatical Error Correction”**, accepted to **Findings of EMNLP 2026**.
 
-We study taxonomy-grounded prompts, model-specific prompt optimization, and multi-sentence batching for English GEC. Our best configuration reaches **78.32 $F_{0.5}$ on BEA-2019** and **67.08 $F_{0.5}$ on CoNLL-2014**.
+We study taxonomy-grounded prompts, model-specific prompt optimization, and multi-sentence batching for English GEC. 
+Our best configuration reaches **78.32 $F_{0.5}$ on BEA-2019 test** and **67.08 $F_{0.5}$ on CoNLL-2014 test**.
+
+## Citation
+
+If you find this work is useful for your research, please cite our paper:
+
+```bibtex
+@misc{karpo2026largercontextwindowfewer,
+      title={Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for Minimal-Edit Grammatical Error Correction},
+      author={Kateryna Karpo and Artem Chernodub},
+      year={2026},
+      eprint={2609.10810},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2609.10810},
+}
+```
 
 ## Contents
 
@@ -90,3 +108,9 @@ Outputs are written to `outputs/<run_name>/`.
 - Claude optimization skill: `[.claude/skills/gec-prompt-optimise/SKILL.md](.claude/skills/gec-prompt-optimise/SKILL.md)`
 
 Credentials, model weights, raw API responses, and checkpoints are not included. Third-party datasets and models remain governed by their original terms.
+
+## License
+
+This code is released under the [MIT License](LICENSE), which permits both commercial and non-commercial use, modification, and redistribution. If you use this code or build upon this work in a research publication, please cite our paper (see [Citation](#citation)).
+
+The **CoNLL-2014** and **BEA-2019** datasets are not our property and are not covered by this license. They remain governed by their original licenses and terms of use. Users must obtain those datasets from their official sources and comply with their respective license requirements.
