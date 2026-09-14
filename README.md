@@ -14,6 +14,22 @@ Minimal-Edit Grammatical Error Correction”**, accepted to **Findings of EMNLP 
 We study taxonomy-grounded prompts, model-specific prompt optimization, and multi-sentence batching for English GEC. 
 Our best configuration reaches **78.32 $F_{0.5}$ on BEA-2019 test** and **67.08 $F_{0.5}$ on CoNLL-2014 test**.
 
+## Citation
+
+If you find this work is useful for your research, please cite our paper:
+
+```bibtex
+@misc{karpo2026largercontextwindowfewer,
+      title={Larger Context Window, Fewer Overcorrections: Optimizing Prompts and Batching for Minimal-Edit Grammatical Error Correction},
+      author={Kateryna Karpo and Artem Chernodub},
+      year={2026},
+      eprint={2609.10810},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2609.10810},
+}
+```
+
 ## Contents
 
 - `src/`, `en_main.py`, `en_evaluation/`: API-model inference and evaluation
