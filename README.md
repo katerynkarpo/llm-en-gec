@@ -102,15 +102,15 @@ demonstrations, disabled thinking, and sentence-level retry for malformed batche
 
 Outputs are written to `outputs/<run_name>/`.
 
+## License
+
+This code is released under the [MIT License](LICENSE), which permits both commercial and non-commercial use, modification, and redistribution. If you use this code or build upon this work in a research publication, please cite our paper (see [Citation](#citation)).
+
+The **CoNLL-2014** and **BEA-2019** datasets are not our property and are not covered by this license. They remain governed by their original licenses and terms of use. Users must obtain those datasets from their official sources and comply with their respective license requirements.
+
 ## More information
 
 - Dataset layout and licensing: `[data/README.md](data/README.md)`
 - Claude optimization skill: `[.claude/skills/gec-prompt-optimise/SKILL.md](.claude/skills/gec-prompt-optimise/SKILL.md)`
 
 Credentials, model weights, raw API responses, and checkpoints are not included. Third-party datasets and models remain governed by their original terms.
-
-## License
-
-This code is released under the [MIT License](LICENSE), which permits both commercial and non-commercial use, modification, and redistribution. If you use this code or build upon this work in a research publication, please cite our paper (see [Citation](#citation)).
-
-The **CoNLL-2014** and **BEA-2019** datasets are not our property and are not covered by this license. They remain governed by their original licenses and terms of use. Users must obtain those datasets from their official sources and comply with their respective license requirements.
